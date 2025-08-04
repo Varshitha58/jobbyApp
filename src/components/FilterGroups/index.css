@@ -1,0 +1,48 @@
+.filers-group {
+  background-color: #1f1f1f;
+  padding: 20px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  max-width: 100%;
+}
+
+.filters-heading {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #e2e8f0;
+}
+
+.type-list,
+.salary-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.type-list li,
+.salary-list li {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input {
+  width: 16px;
+  height: 16px;
+  accent-color: #6366f1;
+  cursor: pointer;
+}
+
+label {
+  font-size: 16px;
+  color: #cbd5e1;
+  cursor: pointer;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #334155;
+  margin: 20px 0;
+}
