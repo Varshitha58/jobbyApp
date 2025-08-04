@@ -50,7 +50,7 @@ class JobItemDetails extends Component {
   })
 
   getJobDetails = async () => {
-    this.setState({isLoading: true}) // set loading state
+    this.setState({isLoading: true})
     const jwtToken = Cookies.get('jwt_token')
     const {match} = this.props
     const {id} = match.params
@@ -107,7 +107,11 @@ class JobItemDetails extends Component {
       <div className="job-detail-page">
         <div className="job-card">
           <div className="job-header-column">
-            <img src={companyLogoUrl} alt="company logo" className="logo" />
+            <img
+              src={companyLogoUrl}
+              alt="job details company logo"
+              className="logo"
+            />
             <h1 className="job-title">{title}</h1>
             <p className="rating">⭐ {rating}</p>
           </div>

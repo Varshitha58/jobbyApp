@@ -21,6 +21,7 @@ class Jobs extends Component {
     searchInput: '',
     employmentType: [],
     salaryRange: '',
+    selectedLocations: [],
     apiStatus: apiStatusConstants.initial,
   }
 
@@ -31,11 +32,17 @@ class Jobs extends Component {
   getJobs = async () => {
     this.setState({apiStatus: apiStatusConstants.in_progress})
 
-    const {searchInput, employmentType, salaryRange} = this.state
+    const {
+      searchInput,
+      employmentType,
+      salaryRange,
+      selectedLocations,
+    } = this.state
     const jwtToken = Cookies.get('jwt_token')
     const url = `https://apis.ccbp.in/jobs?employment_type=${employmentType.join(
       ',',
     )}&minimum_package=${salaryRange}&search=${searchInput}`
+
     const options = {
       method: 'GET',
       headers: {
@@ -57,8 +64,15 @@ class Jobs extends Component {
         rating: job.rating,
       }))
 
+      const filteredByLocation =
+        selectedLocations.length > 0
+          ? formattedData.filter(job =>
+              selectedLocations.includes(job.location),
+            )
+          : formattedData
+
       this.setState({
-        jobsList: formattedData,
+        jobsList: filteredByLocation,
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -85,6 +99,15 @@ class Jobs extends Component {
 
   updateSalaryRange = id => {
     this.setState({salaryRange: id}, this.getJobs)
+  }
+
+  updateLocation = location => {
+    this.setState(prev => {
+      const updateLoc = prev.selectedLocations.includes(location)
+        ? prev.selectedLocations.filter(l => l !== location)
+        : [...prev.selectedLocations, location]
+      return {selectedLocations: updateLoc}
+    }, this.getJobs)
   }
 
   renderLoader = () => (
@@ -157,6 +180,7 @@ class Jobs extends Component {
           <FilterGroups
             onChangeType={this.updateEmploymentType}
             onChangeSalary={this.updateSalaryRange}
+            onChangeLocation={this.updateLocation}
           />
         </div>
         <div className="job-content-section">

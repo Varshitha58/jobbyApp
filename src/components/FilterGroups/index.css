@@ -5,6 +5,8 @@
   color: #ffffff;
   font-family: 'Roboto', sans-serif;
   max-width: 100%;
+  position: sticky;
+  top: 50px;
 }
 
 .filters-heading {
@@ -14,15 +16,17 @@
 }
 
 .type-list,
-.salary-list {
+.salary-list,
+.location-list {
   list-style: none;
   padding-left: 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .type-list li,
-.salary-list li {
-  margin-bottom: 12px;
+.salary-list li,
+.location-list li {
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 10px;

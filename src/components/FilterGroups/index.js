@@ -38,8 +38,10 @@ const salaryRangesList = [
   },
 ]
 
+const locationsList = ['Hyderabad', 'Bangalore', 'Chennai', 'Delhi', 'Mumbai']
+
 const FilterGroups = props => {
-  const {onChangeType, onChangeSalary} = props
+  const {onChangeType, onChangeSalary, onChangeLocation} = props
 
   const renderType = () => (
     <>
@@ -79,11 +81,33 @@ const FilterGroups = props => {
     </>
   )
 
+  const renderLocation = () => (
+    <>
+      <h1 className="filters-heading">Location</h1>
+      <ul className="location-list">
+        {locationsList.map(loc => (
+          <li key={loc}>
+            <input
+              type="checkbox"
+              name="location"
+              id={loc}
+              value={loc}
+              onChange={() => onChangeLocation(loc)}
+            />
+            <label htmlFor={loc}>{loc}</label>
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+
   return (
     <div className="filers-group">
       {renderType()}
       <hr />
       {renderSalary()}
+      <hr />
+      {renderLocation()}
     </div>
   )
 }
